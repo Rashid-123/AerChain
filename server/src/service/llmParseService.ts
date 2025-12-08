@@ -7,23 +7,31 @@ const openai = new OpenAI({
 
 export const extractTaskFields = async (transcript: string): Promise<ParsedTaskFields> => {
     // console.log("inside the llm service ");
-    
+
+
     const prompt = `
-    From the following text, extract ONLY:
-    - title
-    - description
-    - priority (low, medium, high)
-    - dueDate (natural language)
-    - status (default "To Do")
+You are a task extraction engine for a voice-enabled task manager. 
+Your job is to analyze the user's spoken input and extract structured task fields.
 
-    IMPORTANT:
-    - Return ONLY pure JSON
-    - Do NOT use backticks
-    - Do NOT wrap in markdown
-    - Do NOT include \`\`\`json
+From the following text, identify and extract ONLY these fields:
+- title: the main action or task
+- description: additional details or context (if any)
+- priority: one of (low, medium, high). If not mentioned, return medium
+- dueDate: natural language due date phrase , always add next if it is a day name (e.g., "tomorrow at 5 pm", "next Monday")
+- status: always return "To Do" unless explicitly stated otherwise
 
-    Text: "${transcript}"
-    `;
+REQUIREMENTS:
+- Output MUST be valid JSON only
+- Do NOT include backticks
+- Do NOT include markdown
+- Do NOT include explanations
+- Do NOT include \`\`\`json or any wrapping text
+- JSON must be the ONLY content in the response
+
+Here is the user text to analyze:
+"${transcript}"
+`;
+
 
     const completion = await openai.chat.completions.create({
         model: "gpt-4o-mini",
