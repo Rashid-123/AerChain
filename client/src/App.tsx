@@ -1,16 +1,22 @@
+import {Routes , Route} from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import List from "./pages/List";
 
-import './App.css'
-import VoiceRecorder from './components/VoiceRecorder'
 function App() {
 
   return (
-    <>
-      <div>
-        < h1> Start development from here</h1>
-        <VoiceRecorder />
-      </div>
-     
-    </>
+    
+     <div className="bg-bg1 min-h-screen text-white">
+      <Navbar />
+
+      <Routes >
+        <Route path="/" element={<Home />} />
+        <Route path="/list" element={<List />} />
+      </Routes>
+
+     </div>
+    
   )
 }
 

@@ -3,7 +3,6 @@ import axios from "axios";
 
 const VoiceRecorder = () => {
   const [isRecording, setIsRecording] = useState(false);
-  const [responseText, setResponseText] = useState("");
   const [responseData , setResponseData] = useState(null);
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
 
@@ -43,12 +42,11 @@ const VoiceRecorder = () => {
           headers: { "Content-Type": "multipart/form-data" },
         });
 
-        // setResponseText(JSON.stringify(res.data, null, 2));
         setResponseData(res.data);
 
       } catch (err: any) {
         console.error(err);
-        setResponseText("Error while processing audio!");
+           
       }
     };
   };
