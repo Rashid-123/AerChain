@@ -15,11 +15,13 @@ const Modal = ({ open, onClose, children }: ModalProps) => {
                     className="absolute top-3 right-3 text-text2 hover:text-text1 text-xl w-6 h-6 flex items-center justify-center"
                     onClick={onClose}
                 >
-                    ×
+                    x
                 </button>
                 {children}
             </div>
         </div>
+        
+
     );
 };
 

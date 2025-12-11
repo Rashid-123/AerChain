@@ -1,11 +1,14 @@
 import { useState, useRef } from "react";
 import axios from "axios";
 
-const VoiceRecorder = () => {
-  const [isRecording, setIsRecording] = useState(false);
-  const [responseData , setResponseData] = useState(null);
+interface Props {
+  setRecording: (val: boolean) => void;
+  setLoading: (val: boolean) => void;
+  onData: (data: any) => void;
+}
+const VoiceRecorder = ({setRecording, setLoading, onData} : Props) => {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
-
+  const[isRecording , setIsRecording] = useState<boolean>(false);
   const audioChunks = useRef<Blob[]>([]);
 
   const startRecording = async () => {
@@ -20,7 +23,9 @@ const VoiceRecorder = () => {
 
     recorder.start();
 
+       
     setMediaRecorder(recorder);
+    setRecording(true);
     setIsRecording(true);
   };
 
@@ -28,7 +33,9 @@ const VoiceRecorder = () => {
     if (!mediaRecorder) return;
 
     mediaRecorder.stop();
+    setRecording(false);
     setIsRecording(false);
+    setLoading(true);
 
     mediaRecorder.onstop = async () => {
       const audioBlob = new Blob(audioChunks.current, { type: "audio/webm" });
@@ -42,39 +49,24 @@ const VoiceRecorder = () => {
           headers: { "Content-Type": "multipart/form-data" },
         });
 
-        setResponseData(res.data);
+        onData(res.data);
 
       } catch (err: any) {
         console.error(err);
-           
+      }finally{
+        setLoading(false);
       }
     };
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Microphone Voice Test</h2>
-
+    <>
       {!isRecording ? (
         <button onClick={startRecording}> Start Recording</button>
       ) : (
         <button onClick={stopRecording}> Stop Recording</button>
       )}
-
-      <h3>Backend Response:</h3>
-      {/* <pre>{responseText}</pre>
-       */}
-
-       {responseData && (
-        <div>
-       <h4>{`Text = ${responseData.transcript}`}</h4>
-        <h2> {`Title = ${responseData.title}`}</h2>
-        <h3> {`Description = ${responseData.description}`}</h3>
-        <h3>{`Priority = ${responseData.priority}`}</h3>
-        <h3>{`DueDate = ${responseData.dueDate}`}</h3>
-        <h3> {`Status = ${responseData.status}`}</h3>
-        </div> ) }
-    </div>
+    </>
   );
 };
 
