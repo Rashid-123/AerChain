@@ -2,13 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
-  --bg-1: #150041;
-  --bg-2: #201045;
-  --bg-3: #362756;
-  --border-1: #88829e;
-  --text-1: #f4f7fb;
-  --text-2: #9f9ab3;
+  --bg-1: #f8fafb;
+  --bg-2: #ffffff;
+  --bg-3: #e2e8f0;
+  --border-1: #cbd5e0;
+  --text-1: #1a202c;
+  --text-2: #718096;
 }
+
+
 
 
