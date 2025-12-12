@@ -26,7 +26,7 @@ export default function ListPage() {
     if (loading) return <p className="text-text1 p-10">Loading...</p>
 
     return (
-        <div className="p-10 min-h-screen ">
+        <div className="max-w-[1200px] mx-auto py-10  ">
             <h2 className="text-2xl text-text1 mb-6">Task List</h2>
 
             <TaskFilters />

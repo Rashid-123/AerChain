@@ -26,19 +26,19 @@ const DeleteTaskModal = ({ open, onClose, task }: Props) => {
         <Modal open={open} onClose={onClose}>
             <h3 className="text-lg text-text1 mb-4">Delete Task?</h3>
             <p className="text-text2 mb-6">
-                Are you sure you want to delete: <strong className="text-text1">{task?.title}</strong>?
+                Are you sure you want to delete : <strong className="text-text1">{task?.title}</strong>?
             </p>
 
             <div className="flex gap-3">
                 <button 
                     onClick={remove}
-                    className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
                 >
                     Yes, Delete
                 </button>
                 <button 
                     onClick={onClose}
-                    className="px-4 py-2 bg-bg3 text-text1 rounded hover:bg-opacity-80 transition-colors border border-border1"
+                    className="px-4 py-2 bg-bg3 text-text1 rounded hover:bg-opacity-80 transition-colors border border-gray-200"
                 >
                     Cancel
                 </button>

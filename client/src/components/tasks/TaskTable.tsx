@@ -14,12 +14,12 @@ const TaskTable = ({ tasks, onEdit, onDelete }: Props) => {
             <table className="w-full">
                 <thead>
                     <tr className="bg-bg3 border-b border-border1">
-                        <th className="py-3 px-4 text-left text-text1 font-medium w-1/5">Title</th>
-                        <th className="py-3 px-4 text-left text-text1 font-medium w-2/5">Description</th>
+                        <th className="py-3 px-4 text-left text-text1 font-medium w-1/4">Title</th>
+                        <th className="py-3 px-4 text-left text-text1 font-medium w-2/6">Description</th>
                         <th className="py-3 px-4 text-left text-text1 font-medium w-1/12">Priority</th>
-                        <th className="py-3 px-4 text-left text-text1 font-medium w-1/8">Status</th>
-                        <th className="py-3 px-4 text-left text-text1 font-medium w-1/8">Due Date</th>
-                        <th className="py-3 px-4 text-left text-text1 font-medium w-1/6">Actions</th>
+                        <th className="py-3 px-4 text-left text-text1 font-medium w-1/7">Status</th>
+                        <th className="py-3 px-4 text-left text-text1 font-medium w-1/7">Due Date</th>
+                        <th className="py-3 px-4 text-left text-text1 font-medium w-1/7">Actions</th>
                     </tr>
                 </thead>
 

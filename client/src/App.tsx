@@ -1,16 +1,16 @@
 import {Routes , Route} from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
+import KanbanPage from "./pages/Home";
 import ListPage from "./pages/List";
 function App() {
 
   return (
     
-     <div className="min-h-screen bg-bg1 ">
+     <div className=" min-h-[1000px] bg-bg1">
       <Navbar />
-
+     
       <Routes >
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<KanbanPage />} />
         <Route path="/list" element={<ListPage />} />
       </Routes>
 

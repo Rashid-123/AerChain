@@ -10,7 +10,7 @@ const Modal = ({ open, onClose, children }: ModalProps) => {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div className="bg-bg2 p-6 rounded-lg w-full max-w-md relative border border-border1">
+            <div className="bg-bg1 p-6 rounded-lg w-full max-w-md relative border border-border1">
                 <button
                     className="absolute top-3 right-3 text-text2 hover:text-text1 text-xl w-6 h-6 flex items-center justify-center"
                     onClick={onClose}
