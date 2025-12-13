@@ -29,7 +29,7 @@ const KanbanPage = () => {
       .then(() => dispatch(fetchTasks()));
   };
 
-  if (loading) return <p className="text-text1 p-10">Loading...</p>;
+  if (loading) return <p className="text-text1 p-10"></p>;
 
   const toDoTasks = tasks.filter((t) => t.status === "To Do");
   const inProgressTasks = tasks.filter((t) => t.status === "In Progress");
@@ -62,3 +62,5 @@ const KanbanPage = () => {
 };
 
 export default KanbanPage;
+
+

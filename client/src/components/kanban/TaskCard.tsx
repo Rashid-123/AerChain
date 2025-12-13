@@ -106,3 +106,4 @@ const TaskCard = ({ task, onDragStart }: Props) => {
 };
 
 export default TaskCard;
+
