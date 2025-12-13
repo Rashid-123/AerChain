@@ -7,7 +7,7 @@ import EditTaskModal from "../components/tasks/EditTaskModal";
 import TaskTable from "../components/tasks/TaskTable";
 
 import { AppDispatch, RootState } from "../redux/store";
-import { fetchTasks, deleteTask } from "../redux/tasks/tasksThunks";
+import { fetchTasks } from "../redux/tasks/tasksThunks";
 import { resetFilters } from "../redux/tasks/tasksSlice";
 import { Task } from "../redux/tasks/tasksTypes";
 

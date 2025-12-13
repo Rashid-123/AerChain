@@ -4,6 +4,7 @@ import { TaskInput } from "../types/taskTypes.js";
 
 
 // ----------- create task --------
+
 export const createTask = async (req: Request, res: Response) => {
     try {
         const data: TaskInput = req.body;
@@ -23,27 +24,33 @@ export const createTask = async (req: Request, res: Response) => {
     }
 };
 
-// ------------ Get all tasks -------------
-
+// ----------- Get all tasks ( with filter and search)
 export const getAllTasks = async (req: Request, res: Response) => {
-    try {
+  try {
+    const { status, priority, query } = req.query;
 
-        const { status, priority } = req.query;
+    const filter: any = {};
 
-        const filter: any = {};
+    // ✅ Filters
+    if (status) filter.status = status;
+    if (priority) filter.priority = priority;
 
-        if (status) filter.status = status;
-        if (priority) filter.priority = priority;
-
-        const tasks = await TaskModel.find(filter).sort({ createdAt: -1 });
-
-        return res.status(200).json(tasks);
-
-    } catch (err) {
-        console.error("Get Tasks Error : ", err);
-        return res.status(500).json({ error: "Failded to fetch tasks" })
+    // ✅ Search (title + description)
+    if (query) {
+      filter.$text = { $search: query };
     }
-}
+
+    const tasks = await TaskModel
+      .find(filter)
+      .sort({ createdAt: -1 });
+
+    return res.status(200).json(tasks);
+
+  } catch (err) {
+    console.error("Get Tasks Error:", err);
+    return res.status(500).json({ error: "Failed to fetch tasks" });
+  }
+};
 
 
 // ------------- Get single task ------------------
@@ -89,13 +96,13 @@ export const updateTaskStatus = async (req: Request, res: Response) => {
     try {
         const { status } = req.body;
 
-        if(!status) return res.json({error: "Please provide status to update"})
-        
+        if (!status) return res.json({ error: "Please provide status to update" })
+
 
         const updated = await TaskModel.findByIdAndUpdate(
             req.params.id,
             { status },
-            { new: true , runValidators: true }
+            { new: true, runValidators: true }
         )
 
         if (!updated) {

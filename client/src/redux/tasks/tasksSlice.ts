@@ -47,7 +47,6 @@ const tasksSlice = createSlice({
         });
 
         // update Task
-
         builder.addCase(updateTask.fulfilled, (state, action) => {
             const idx = state.tasks.findIndex((t) => t._id === action.payload._id);
             if(idx !== -1) state.tasks[idx] = action.payload;

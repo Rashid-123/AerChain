@@ -22,4 +22,6 @@ const TaskSchema = new Schema<TaskDB>({
     { timestamps: true }
 );
 
+TaskSchema.index({ title: "text", description: "text" });
+
 export const TaskModel = mongoose.model<TaskDB> ("Task", TaskSchema);
