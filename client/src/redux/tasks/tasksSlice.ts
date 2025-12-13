@@ -68,3 +68,4 @@ const tasksSlice = createSlice({
 
  export const {setFilters, resetFilters} = tasksSlice.actions;
  export default tasksSlice.reducer;
+

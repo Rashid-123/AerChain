@@ -27,7 +27,7 @@ export const createTask = async (req: Request, res: Response) => {
 // ----------- Get all tasks ( with filter and search)
 export const getAllTasks = async (req: Request, res: Response) => {
   try {
-    const { status, priority, query } = req.query;
+    const { status, priority, search } = req.query;
 
     const filter: any = {};
 
@@ -36,8 +36,8 @@ export const getAllTasks = async (req: Request, res: Response) => {
     if (priority) filter.priority = priority;
 
     // ✅ Search (title + description)
-    if (query) {
-      filter.$text = { $search: query };
+    if (search) {
+      filter.$text = { $search: search };
     }
 
     const tasks = await TaskModel
