@@ -1,32 +1,32 @@
-
+import { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 import { setFilters, resetFilters } from "../../redux/tasks/tasksSlice";
 import { fetchTasks } from "../../redux/tasks/tasksThunks";
-import { Search, X  } from "lucide-react";
+import { Search, X } from "lucide-react";
 
-const TaskFilters = () => {
+const TaskFilters = memo(() => {
     const dispatch = useDispatch<AppDispatch>();
     const filters = useSelector((state: RootState) => state.tasks.filters);
 
-    
+
     const updateFilter = (changes: any) => {
         dispatch(setFilters(changes));
     };
 
-   
+
     const handleSearch = () => {
         dispatch(fetchTasks());
     };
 
-    
+
     const handleKeyPress = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter') {
             handleSearch();
         }
     };
 
-    
+
     const handleStatusChange = (value: string) => {
         dispatch(setFilters({ status: value }));
         dispatch(fetchTasks());
@@ -64,7 +64,7 @@ const TaskFilters = () => {
                 </button>
             </div>
 
-         
+
             <select
                 value={filters.status || ""}
                 onChange={(e) => handleStatusChange(e.target.value)}
@@ -76,7 +76,7 @@ const TaskFilters = () => {
                 <option value="Done">Done</option>
             </select>
 
-           
+
             <select
                 value={filters.priority || ""}
                 onChange={(e) => handlePriorityChange(e.target.value)}
@@ -98,6 +98,6 @@ const TaskFilters = () => {
             </button>
         </div>
     );
-};
+});
 
 export default TaskFilters;

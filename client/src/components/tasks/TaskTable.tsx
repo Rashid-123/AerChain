@@ -1,4 +1,4 @@
-
+import { memo } from "react";
 import TaskRow from "./TaskRow";
 import { Task } from "../../redux/tasks/tasksTypes";
 
@@ -8,7 +8,7 @@ interface Props {
     onDelete: (task: Task) => void;
 }
 
-const TaskTable = ({ tasks, onEdit, onDelete }: Props) => {
+const TaskTable = memo (({ tasks, onEdit, onDelete }: Props) => {
     return (
         <div className="bg-bg2 rounded-lg border border-border1 overflow-hidden">
             <table className="w-full">
@@ -36,7 +36,7 @@ const TaskTable = ({ tasks, onEdit, onDelete }: Props) => {
             </table>
         </div>
     );
-};
+} );
 
 export default TaskTable;
 

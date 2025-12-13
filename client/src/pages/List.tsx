@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TaskFilters from "../components/tasks/TaskFilters";
 import DeleteTaskModal from "../components/tasks/DeleteTaskModel";
@@ -18,12 +18,20 @@ export default function ListPage() {
     const [editTask, setEditTask] = useState<Task | null>(null);
     const [deleteTaskState, setDeleteTaskState] = useState<Task | null>(null);
 
+    const handleEdit = useCallback((task: Task) => {
+        setEditTask(task);
+    } , []);
+
+    const handleDelete = useCallback((task: Task) => {
+        setEditTask(task);
+    }, []);
+
     useEffect(() => {
         dispatch(resetFilters());
         dispatch(fetchTasks());
-    }, []);
+    }, [dispatch]);
 
-    if (loading) return <p className="text-text1 p-10">Loading...</p>
+    if (loading) return <p className=" flex alight-center text-center text-text1 p-10"></p>
 
     return (
         <div className="max-w-[1200px] mx-auto py-10  ">
@@ -33,8 +41,10 @@ export default function ListPage() {
 
             <TaskTable
                 tasks={tasks}
-                onEdit={(task) => setEditTask(task)}
-                onDelete={(task) => setDeleteTaskState(task)}
+                // onEdit={(task) => setEditTask(task)}
+                onEdit={handleEdit}
+                // onDelete={(task) => setDeleteTaskState(task)}
+                onDelete={handleDelete}
             />
 
             <EditTaskModal
@@ -51,3 +61,4 @@ export default function ListPage() {
         </div>
     )
 }
+
