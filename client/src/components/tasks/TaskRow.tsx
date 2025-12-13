@@ -15,7 +15,7 @@ const TaskRow = ({ task, onEdit, onDelete }: Props) => {
     };
 
     const getPriorityColors = (priority: string) => {
-        switch (priority.toLowerCase()) {
+        switch (priority?.toLowerCase()) {
             case 'high':
                 return {
                     bg: 'bg-r3',
