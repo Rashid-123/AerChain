@@ -12,13 +12,14 @@ export const extractTaskFields = async (transcript: string): Promise<ParsedTaskF
     const prompt = `
 You are a task extraction engine for a voice-enabled task manager. 
 Your job is to analyze the user's spoken input and extract structured task fields.
+The language of description and tittle should look like how a user add ToDos
 
 From the following text, identify and extract ONLY these fields:
 - title: the main action or task
 - description: additional details or context (if any)
 - priority: one of (low, medium, high). If not mentioned, return medium
 - dueDate: natural language due date phrase , always add next if it is a day name (e.g., "tomorrow at 5 pm", "next Monday")
-- status: always return "To Do" unless explicitly stated otherwise
+- status: one fo (To Do , In Progress , Done ). If not mentioned , return "To Do"
 
 REQUIREMENTS:
 - Output MUST be valid JSON only
@@ -40,16 +41,7 @@ Here is the user text to analyze:
 
     let content = completion.choices[0]?.message?.content || "";
 
-    // console.log("----- Raw Model Output -----");
-    // console.log(content);
-
-    //  Remove unwanted markdown formatting
-    // content = content.replace(/```json/g, "");
-    // content = content.replace(/```/g, "");
-    // content = content.trim();
-
-    // console.log("----- Clean JSON Before Parse -----");
-    // console.log(content);
+   
 
     return JSON.parse(content);
 };
