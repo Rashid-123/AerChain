@@ -15,6 +15,8 @@ A task management application with **voice-based task creation**, Kanban board, 
 ### 3. **Chrono-node (Natural Date → Exact Date)**
    Natural language dates ("tomorrow evening", "next Monday") are converted into actual date-time values.
 
+ ![image](./image/airchain.png)  
+
 The extracted data is returned to the frontend, shown for review, and then saved as a task.
 
 
