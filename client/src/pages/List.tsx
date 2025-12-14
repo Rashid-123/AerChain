@@ -23,7 +23,7 @@ export default function ListPage() {
     } , []);
 
     const handleDelete = useCallback((task: Task) => {
-        setEditTask(task);
+        setDeleteTaskState(task);
     }, []);
 
     useEffect(() => {
